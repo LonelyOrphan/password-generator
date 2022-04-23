@@ -1,6 +1,9 @@
 // Declare generate button variable
 const generateBtn = document.querySelector("#generate");
 
+// Declare array for password characters
+let passwordChars = [];
+
 // Function to get password length
 function getPasswordLength() {
   let lengthChoice = Number(prompt("Please enter a number between 8 and 28", "10"));
@@ -16,16 +19,14 @@ function getPasswordLength() {
 function getPasswordCriteria() {
   let firstCriteria = prompt("Would you like to include lowercase characters in your password?", "yes").toLowerCase();
     if (firstCriteria == "yes" || firstCriteria == "y") {
-      return "abcdefghijklmnopqrstuvwxyz"
+      passwordChars.push("abcdefghijklmnopqrstuvwxyz");
     } else if (firstCriteria == "no" || firstCriteria == "n") {
-      return "";
+      // do nothing;
     } else {
       alert("Please answer either yes or no");
       getPasswordCriteria();
     }
   }
-
-  console.log(getPasswordCriteria());
 
 
 // Function to create random password
