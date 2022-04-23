@@ -17,20 +17,72 @@ function getPasswordLength() {
 
 // Function to get password criteria - this needs to only be called if above has been completed
 function getPasswordCriteria() {
-  let firstCriteria = prompt("Would you like to include lowercase characters in your password?", "yes").toLowerCase();
-    if (firstCriteria == "yes" || firstCriteria == "y") {
+  firstCriteria();
+  secondCriteria();
+  thirdCriteria();
+  fourthCriteria();
+  console.log(passwordChars);
+}
+
+// Gets answer for first criteria and adds to password characters array
+  function firstCriteria() {
+     let firstAnswer = 
+     prompt("Would you like to include lowercase letters in your password?", "yes").toLowerCase();
+    if (firstAnswer == "yes" || firstAnswer == "y") {
       passwordChars.push("abcdefghijklmnopqrstuvwxyz");
-    } else if (firstCriteria == "no" || firstCriteria == "n") {
+    } else if (firstAnswer == "no" || firstAnswer == "n") {
       // do nothing;
     } else {
       alert("Please answer either yes or no");
-      getPasswordCriteria();
+      firstCriteria();
     }
   }
 
+  // Gets answer for second criteria and adds to password characters array
+    function secondCriteria() {
+      let secondAnswer = 
+      prompt("Would you like to include uppercase letters in your password?", "yes").toLowerCase();
+    if (secondAnswer == "yes" || secondAnswer == "y") {
+      passwordChars.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    } else if (secondAnswer == "no" || secondAnswer == "n") {
+      // do nothing
+    } else {
+      alert("Please answer either yes or no");
+      secondCriteria();
+    }
+  }
+
+  // Gets answer for third criteria and adds to password characters array
+  function thirdCriteria() {
+    let thirdAnswer = 
+    prompt("Would you like to include numbers in your password?", "yes").toLowerCase();
+  if (thirdAnswer == "yes" || thirdAnswer == "y") {
+    passwordChars.push("0123456789");
+  } else if (thirdAnswer == "no" || thirdAnswer == "n") {
+    // do nothing
+  } else {
+    alert("Please answer either yes or no");
+    thirdCriteria();
+  }
+}
+
+  // Gets answer for fourth criteria and adds to password characters array
+  function fourthCriteria() {
+    let fourthAnswer = 
+    prompt("Would you like to include special characters in your password?", "yes").toLowerCase();
+  if (fourthAnswer == "yes" || fourthAnswer == "y") {
+    passwordChars.push("!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+  } else if (fourthAnswer == "no" || fourthAnswer == "n") {
+    // do nothing
+  } else {
+    alert("Please answer either yes or no");
+    fourthCriteria();
+  }
+}
+
 
 // Function to create random password
-function createRandomPassword() {
+function createRandomPassword(a, b) {
 console.log();
 }
 
@@ -38,7 +90,7 @@ console.log();
 function generatePassword() {
   const passwordLength = getPasswordLength();
   const passwordCriteria = getPasswordCriteria();
-  const randomPassword = createRandomPassword(passwordLength, passwordCriteria);
+  const randomPassword = createRandomPassword(passwordLength, passwordChars);
 }
 
 // On click of generate button, this function is called

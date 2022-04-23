@@ -16,3 +16,6 @@ User presented with confirm for uppercase
 User presented with confirm for numeric
 User presented with confirm for special characters
 User is presented with the password
+
+
+Next steps: random password bit. Check vars not declared twice.
