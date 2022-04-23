@@ -1,34 +1,51 @@
 // Declare generate button variable
 const generateBtn = document.querySelector("#generate");
 
+// Function to get password length
+function getPasswordLength() {
+  let lengthChoice = Number(prompt("Please enter a number between 8 and 28", "10"));
+  if (typeof lengthChoice == "number" && (lengthChoice >= 8 && lengthChoice <= 128)) {
+    return lengthChoice;
+  } else {
+    alert("Please enter a number between 8 and 128");
+    getPasswordLength();
+  }
+}
+
+// Function to get password criteria - this needs to only be called if above has been completed
+function getPasswordCriteria() {
+  let firstCriteria = prompt("Would you like to include lowercase characters in your password?", "yes").toLowerCase();
+    if (firstCriteria == "yes" || firstCriteria == "y") {
+      return "abcdefghijklmnopqrstuvwxyz"
+    } else if (firstCriteria == "no" || firstCriteria == "n") {
+      return "";
+    } else {
+      alert("Please answer either yes or no");
+      getPasswordCriteria();
+    }
+  }
+
+  console.log(getPasswordCriteria());
+
+
+// Function to create random password
+function createRandomPassword() {
+console.log();
+}
+
 // Function to generate password
 function generatePassword() {
-  // prompt 1 - input password length (between 8 and 128 characters)
-  let firstPrompt = prompt("How many characters in length would you like your password to be? (Min 8, max 128", "8");
-  
-// if length under 8 or above 128 is selected, the user is asked again to choose the correct amount
-if (firstPrompt < 8 || firstPrompt > 128) {
-  alert("Please enter a number between 8 and 128");
-  generatePassword();
-} else 
-
-
-  // prompt 2 - user is asked whether to include lowercase, uppercase, numeric, and/or special characters
-  // Ensure at least one character type has been selected, otherwise request user to select again
-  
-
-  // Password is generated taking the above into consideration and is written to the page
+  const passwordLength = getPasswordLength();
+  const passwordCriteria = getPasswordCriteria();
+  const randomPassword = createRandomPassword(passwordLength, passwordCriteria);
 }
 
 // On click of generate button, this function is called
 // Function to write password to the #password input
 function writePassword() {
   let password = generatePassword();
-
   let passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
