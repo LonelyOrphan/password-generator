@@ -1,10 +1,9 @@
-// Declare generate button variable
 const generateBtn = document.querySelector("#generate");
 
-// Declare array for password characters
+// Store password characters
 let passwordChars = [];
 
-// Declare password length
+// Store password length
 let passwordLength = 0;
 
 // Function to get password length
@@ -28,6 +27,7 @@ function getPasswordCriteria() {
 
 // Gets answer for first criteria and adds to password characters array
   function firstCriteria() {
+    passwordChars = [];
      let firstAnswer = 
      prompt("Would you like to include lowercase letters in your password?", "yes").toLowerCase();
     if (firstAnswer == "yes" || firstAnswer == "y") {
@@ -86,14 +86,15 @@ function createRandomPassword() {
 let minChars = "";
 let restChars = "";
 let passwordString = passwordChars.join("");
-// Selects one of each character from each criteria
+// Selects one of each character from each criteria, ensures each criteria is used
 for (let i = 0; i < passwordChars.length; i++) {
   minChars += passwordChars[i][Math.floor(Math.random() * passwordChars[i].length)];
 }
-// Selects rest of the characters to make up the password
+// Randomly selects characters from all criteria to make up the rest of the password
 for (let i = 0; i < (passwordLength - passwordChars.length); i++) {
   restChars += passwordString[Math.floor(Math.random() * passwordString.length)];
 }
+console.log(passwordChars)
 return minChars + restChars;
 }
 
@@ -101,14 +102,18 @@ return minChars + restChars;
 // Function to generate password
 function generatePassword() {
   getPasswordLength();
-  const passwordCriteria = getPasswordCriteria();
-  const randomPassword = createRandomPassword();
-  console.log(passwordLength)
-  return randomPassword;
+  getPasswordCriteria();
+  // Request that user selects at least one criteria
+  if (passwordChars.length === 0) {
+    alert("A password has to be made from something! Please answer yes to at least one of the questions...");
+    return "please try again 😘"
+  } else { 
+    const randomPassword = createRandomPassword();
+    return randomPassword;
+  }
 }
 
-// On click of generate button, this function is called
-// Function to write password to the #password input
+// Called when generate button is clicked
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
