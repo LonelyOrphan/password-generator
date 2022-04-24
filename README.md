@@ -19,9 +19,13 @@ Github: https://github.com/LonelyOrphan/password-generator
 # Criteria:
 
 password length: 8 - 128 characters
+
 lowercase: abcdefghijklmnopqrstuvwxyz
+
 uppercase: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
 numeric: 0123456789
+
 special characters: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 
 # User Journey:
