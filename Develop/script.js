@@ -15,13 +15,12 @@ function getPasswordLength() {
   }
 }
 
-// Function to get password criteria - this needs to only be called if above has been completed
+// Function to get password criteria
 function getPasswordCriteria() {
   firstCriteria();
   secondCriteria();
   thirdCriteria();
   fourthCriteria();
-  console.log(passwordChars);
 }
 
 // Gets answer for first criteria and adds to password characters array
@@ -83,14 +82,33 @@ function getPasswordCriteria() {
 
 // Function to create random password
 function createRandomPassword(a, b) {
-console.log();
+// what is password length? e.g. 8
+// what is password crit? e,g, [0,1,2]
+// what is array length? e.g. 3
+// select random char from array[0,1,2]
+// loop through array, get random from 0, 1, 2, 0, 1, 2... (if i reaches array.length - 1 then start over)
+// until number of times this is done reaches password length
+let minChars = "";
+let restChars = "";
+let passwordString = passwordChars.join("");
+// selects
+for (let i = 0; i < passwordChars.length; i++) {
+  minChars += passwordChars[i][Math.floor(Math.random() * passwordChars[i].length)];
 }
+
+for (let i = 0; i < (passwordLength - passwordChars); i++) {
+
+}
+return minChars;
+}
+
 
 // Function to generate password
 function generatePassword() {
   const passwordLength = getPasswordLength();
   const passwordCriteria = getPasswordCriteria();
   const randomPassword = createRandomPassword(passwordLength, passwordChars);
+  return randomPassword;
 }
 
 // On click of generate button, this function is called
