@@ -13,6 +13,7 @@ the first characters aren't always made up of the user choices in order.
 
 # Links
 Live app: https://lonelyorphan.github.io/password-generator/
+
 Github: https://github.com/LonelyOrphan/password-generator
 
 # Criteria:
