@@ -4,11 +4,14 @@ const generateBtn = document.querySelector("#generate");
 // Declare array for password characters
 let passwordChars = [];
 
+// Declare password length
+let passwordLength = 0;
+
 // Function to get password length
 function getPasswordLength() {
   let lengthChoice = Number(prompt("Please enter a number between 8 and 28", "10"));
   if (typeof lengthChoice == "number" && (lengthChoice >= 8 && lengthChoice <= 128)) {
-    return lengthChoice;
+    passwordLength = lengthChoice;
   } else {
     alert("Please enter a number between 8 and 128");
     getPasswordLength();
@@ -70,7 +73,7 @@ function getPasswordCriteria() {
     let fourthAnswer = 
     prompt("Would you like to include special characters in your password?", "yes").toLowerCase();
   if (fourthAnswer == "yes" || fourthAnswer == "y") {
-    passwordChars.push("!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+    passwordChars.push("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
   } else if (fourthAnswer == "no" || fourthAnswer == "n") {
     // do nothing
   } else {
@@ -79,35 +82,28 @@ function getPasswordCriteria() {
   }
 }
 
-
-// Function to create random password
-function createRandomPassword(a, b) {
-// what is password length? e.g. 8
-// what is password crit? e,g, [0,1,2]
-// what is array length? e.g. 3
-// select random char from array[0,1,2]
-// loop through array, get random from 0, 1, 2, 0, 1, 2... (if i reaches array.length - 1 then start over)
-// until number of times this is done reaches password length
+function createRandomPassword() {
 let minChars = "";
 let restChars = "";
 let passwordString = passwordChars.join("");
-// selects
+// Selects one of each character from each criteria
 for (let i = 0; i < passwordChars.length; i++) {
   minChars += passwordChars[i][Math.floor(Math.random() * passwordChars[i].length)];
 }
-
-for (let i = 0; i < (passwordLength - passwordChars); i++) {
-
+// Selects rest of the characters to make up the password
+for (let i = 0; i < (passwordLength - passwordChars.length); i++) {
+  restChars += passwordString[Math.floor(Math.random() * passwordString.length)];
 }
-return minChars;
+return minChars + restChars;
 }
 
 
 // Function to generate password
 function generatePassword() {
-  const passwordLength = getPasswordLength();
+  getPasswordLength();
   const passwordCriteria = getPasswordCriteria();
-  const randomPassword = createRandomPassword(passwordLength, passwordChars);
+  const randomPassword = createRandomPassword();
+  console.log(passwordLength)
   return randomPassword;
 }
 
